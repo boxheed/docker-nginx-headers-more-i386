@@ -23,6 +23,7 @@ RUN install_packages \
     libyajl-dev \
     pkgconf \
     zlib1g-dev \
+    ca-certificates \
   && update-ca-certificates
 
 RUN git clone --depth 1 https://github.com/openresty/headers-more-nginx-module.git \
@@ -55,6 +56,7 @@ RUN install_packages \
     libxml2 \
     libyajl2 \
     zlib1g \
+    ca-certificates \
   && update-ca-certificates
 
 COPY --from=build /etc/nginx/modules/ngx_http_headers_more_filter_module.so /etc/nginx/modules/ngx_http_headers_more_filter_module.so
