@@ -4,26 +4,26 @@ FROM nginxinc/nginx-unprivileged:1.17.8 as build
 USER 0
 
 ADD install_packages /usr/sbin
-RUN chmod +x /usr/sbin/install_packages \
-  && update-ca-certificates
+RUN chmod +x /usr/sbin/install_packages
 
 RUN install_packages \
-  wget \
-  nfs-common \
-  apt-utils \
-  autoconf \
-  automake \
-  build-essential \
-  git \
-  libcurl4-openssl-dev \
-  libgeoip-dev \
-  liblmdb-dev \
-  libpcre++-dev \
-  libtool \
-  libxml2-dev \
-  libyajl-dev \
-  pkgconf \
-  zlib1g-dev
+    wget \
+    nfs-common \
+    apt-utils \
+    autoconf \
+    automake \
+    build-essential \
+    git \
+    libcurl4-openssl-dev \
+    libgeoip-dev \
+    liblmdb-dev \
+    libpcre++-dev \
+    libtool \
+    libxml2-dev \
+    libyajl-dev \
+    pkgconf \
+    zlib1g-dev \
+  && update-ca-certificates
 
 RUN git clone --depth 1 https://github.com/openresty/headers-more-nginx-module.git \
   && wget http://nginx.org/download/nginx-1.17.8.tar.gz \
@@ -42,8 +42,7 @@ FROM nginxinc/nginx-unprivileged:1.17.8
 USER 0
 
 ADD install_packages /usr/sbin
-RUN chmod +x /usr/sbin/install_packages \
-  && update-ca-certificates
+RUN chmod +x /usr/sbin/install_packages 
 
 RUN install_packages \
     apt-utils \
@@ -55,7 +54,8 @@ RUN install_packages \
     libpcre++0v5 \
     libxml2 \
     libyajl2 \
-    zlib1g
+    zlib1g \
+  && update-ca-certificates
 
 COPY --from=build /etc/nginx/modules/ngx_http_headers_more_filter_module.so /etc/nginx/modules/ngx_http_headers_more_filter_module.so
 
