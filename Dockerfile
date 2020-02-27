@@ -4,7 +4,8 @@ FROM nginxinc/nginx-unprivileged:1.17.8 as build
 USER 0
 
 ADD install_packages /usr/sbin
-RUN chmod +x /usr/sbin/install_packages
+RUN chmod +x /usr/sbin/install_packages \
+  && update-ca-certificates
 
 RUN install_packages \
   wget \
@@ -41,7 +42,8 @@ FROM nginxinc/nginx-unprivileged:1.17.8
 USER 0
 
 ADD install_packages /usr/sbin
-RUN chmod +x /usr/sbin/install_packages
+RUN chmod +x /usr/sbin/install_packages \
+  && update-ca-certificates
 
 RUN install_packages \
     apt-utils \
